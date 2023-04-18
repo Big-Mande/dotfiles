@@ -59,7 +59,7 @@ use {
   'nvim-lualine/lualine.nvim',
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
-use({
+use{
     "glepnir/lspsaga.nvim",
     opt = true,
     branch = "main",
@@ -72,6 +72,13 @@ use({
         --Please make sure you install markdown and markdown_inline parser
         {"nvim-treesitter/nvim-treesitter"}
     }
-})
+}
 use ('nvim-tree/nvim-web-devicons')
+use({
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	tag = "v<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+	-- install jsregexp (optional!:).
+	run = "make install_jsregexp"
+})
   end)
