@@ -1,0 +1,54 @@
+format = """
+[┌($directory)[┌($git_branch)(][$git_status[┌($git_commit)][┌($cmd_duration)][┌($cmd_exit_code)][┌($python)][┌($conda)][┌($custom)][┌($line_break)]])]
+[└($shell)[$character]]
+"""
+
+[directory]
+format = "[$path]($style) "
+style = "blue"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "cyan"
+
+[git_status]
+format = "[$symbol$status]($style) "
+style = "red"
+
+[git_commit]
+format = "[$hash]($style) "
+style = "magenta"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[cmd_exit_code]
+format = "[$code]($style) "
+style = "red"
+
+[python]
+format = "[$version]($style) "
+style = "green"
+
+[conda]
+format = "[$name]($style) "
+style = "green"
+
+[custom]
+format = "[$output]($style) "
+style = "blue"
+
+[line_break]
+disabled = false
+
+[shell]
+format = "[$name]($style) "
+style = "bold blue"
+
+[character]
+success_symbol = "❯"
+error_symbol = "❯"
+success_style = "green"
+error_style = "red"
+
