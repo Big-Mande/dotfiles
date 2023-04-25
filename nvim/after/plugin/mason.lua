@@ -17,7 +17,7 @@ local DEFAULT_SETTINGS = {
 
     -- Limit for the maximum amount of packages to be installed at the same time. Once this limit is reached, any further
     -- packages that are requested to be installed will be put in a queue.
-    max_concurrent_installers = 10,
+    max_concurrent_installers = 30,
 
     -- [Advanced setting]
     -- The registries to source packages from. Accepts multiple entries. Should a package with the same name exist in
@@ -106,5 +106,4 @@ local DEFAULT_SETTINGS = {
     },
 }
 return DEFAULT_SETTINGS
-
 

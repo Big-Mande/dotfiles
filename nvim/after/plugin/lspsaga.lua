@@ -1,12 +1,12 @@
-require("packer").startup(function()
-  use({
+require('packer').startup(function(use)
+  use{
     "glepnir/lspsaga.nvim",
-    event = "LspAttach",
+    event = "BufReadPost",
     config = function()
       require("lspsaga").setup({})
     end,
     requires = { "nvim-tree/nvim-web-devicons" }
-  })
+  }
 end)
 
 -- The rest of your keymap configuration remains the same.

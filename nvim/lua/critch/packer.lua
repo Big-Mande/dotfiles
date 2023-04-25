@@ -19,7 +19,7 @@ return require('packer').startup(function(use)
 		  vim.cmd('colorscheme rose-pine')
 	  end,
   })
-
+ 
   use('nvim-treesitter/nvim-treesitter', {run=':TSUpdate'})
   use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
@@ -59,20 +59,6 @@ use {
   'nvim-lualine/lualine.nvim',
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
-use{
-    "glepnir/lspsaga.nvim",
-    opt = true,
-    branch = "main",
-    event = "LspAttach",
-    config = function()
-        require("lspsaga").setup({})
-    end,
-    requires = {
-        {"nvim-tree/nvim-web-devicons"},
-        --Please make sure you install markdown and markdown_inline parser
-        {"nvim-treesitter/nvim-treesitter"}
-    }
-}
 use ('nvim-tree/nvim-web-devicons')
 use({
 	"L3MON4D3/LuaSnip",
@@ -81,4 +67,13 @@ use({
 	-- install jsregexp (optional!:).
 	run = "make install_jsregexp"
 })
+use {
+  'glepnir/lspsaga.nvim',
+  event = 'BufReadPost',
+  config = function()
+    require('lspsaga').setup()
+  end,
+  requires = { {'kyazdani42/nvim-web-devicons'} }
+}
+
   end)
