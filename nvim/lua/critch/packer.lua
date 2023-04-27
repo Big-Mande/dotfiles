@@ -76,4 +76,5 @@ use {
   requires = { {'kyazdani42/nvim-web-devicons'} }
 }
 
+  use 'windwp/nvim-ts-autotag'
   end)
