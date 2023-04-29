@@ -1,11 +1,19 @@
 ---@diagnostic disable: undefined-global
 require('critch.remap')
+vim.opt.tabstop=4
+vim.opt.softtabstop=4
+vim.opt.shiftwidth=4
+vim.opt.wrap=false
+vim.opt.expandtab=true
+vim.opt.smartindent=true
+vim.opt.pumheight = 10
 vim.opt.number = true
 vim.wo.relativenumber = true
 vim.opt.scrolloff = 15
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
+require'lspconfig'.clangd.setup{}
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {
   -- Server-specific settings. See `:help lspconfig-setup`
