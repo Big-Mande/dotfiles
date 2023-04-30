@@ -1,5 +1,19 @@
 ---@diagnostic disable: undefined-global
 require('critch.remap')
+vim.cmd [[
+  augroup MyColors
+    autocmd!
+    autocmd ColorScheme * highlight StatusLineNC guifg=white guibg=none 
+    autocmd ColorScheme * highlight StatusLine guifg=white guibg=none
+    autocmd ColorScheme * highlight LineNr guifg=white
+    autocmd ColorScheme * highlight LineNr guifg=white
+    autocmd ColorScheme * highlight CursorLineNr guifg=white
+    autocmd ColorScheme * highlight LineNr guifg=white
+    autocmd ColorScheme * highlight CursorLineNr guifg=white
+    autocmd ColorScheme * highlight Comment guifg=white
+  augroup END
+]]
+
 vim.opt.tabstop=4
 vim.opt.softtabstop=4
 vim.opt.shiftwidth=4
