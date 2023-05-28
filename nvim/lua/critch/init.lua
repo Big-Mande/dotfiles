@@ -22,7 +22,7 @@ vim.opt.expandtab=true
 vim.opt.smartindent=true
 vim.opt.pumheight = 10
 vim.opt.number = true
-vim.wo.relativenumber = true
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 15
 -- Setup language servers.
 local lspconfig = require('lspconfig')
@@ -101,5 +101,6 @@ require'lspconfig'.lua_ls.setup {
 }
 
 require'lspconfig'.tailwindcss.setup{}
-
+-- Zig lsp config
+require'lspconfig'.zls.setup{}
 
