@@ -36,13 +36,37 @@ require("lazy").setup({
 	-- LSP
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},	
+  {'hrsh7th/nvim-cmp'},
+
+  -- treesitter
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+
+  -- fuzzy finder
+  {'junegunn/fzf'},
+  {'junegunn/fzf.vim'},
+  -- telescope
+	{
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
 
 	-- lualine
 	{
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
+
+	-- nvim surround
+	{
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+	},
 
   },
   -- Configure any other settings here. See the documentation for more details.
