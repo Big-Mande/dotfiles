@@ -33,9 +33,12 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.signcolumn = 'yes'
+vim.opt.scrolloff = 20
 
 -- set remaps
 vim.keymap.set('n', '<Leader>pv', '<cmd>Explore<cr>')
+vim.keymap.set('n', '<Leader>pn', '<cmd>noh<cr>')
 
 -- set lsp kemaps
 -- Reserve a space in the gutter

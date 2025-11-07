@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,10 +21,38 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+
+
+
+# yubikey settings
+services.udev.packages = [ pkgs.yubikey-personalization ];
+
+programs.gnupg.agent = {
+  enable = true;
+  enableSSHSupport = true;
+};
+
+security.pam.services = {
+  login.u2fAuth = true;
+};
+
+security.pam.yubico = {
+   enable = true;
+   debug = true;
+   mode = "challenge-response";
+   id = [ "26483857" ];
+};
+
+
   # Fonts
   fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "FiraCode" "0xProto" "BigBlueTerminal" ]; })
+  nerd-fonts._0xproto
+  nerd-fonts.bigblue-terminal
+  nerd-fonts.fira-code
 ];
+
+  # enable yubikey
+  services.yubikey-agent.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -49,12 +79,18 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+
+  programs.hyprland = {
+	enable = true;
+	xwayland.enable = true;
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.wayland = true;
+  # services.xserver.desktopManager.gnome.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -66,7 +102,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -86,6 +122,10 @@
 
   # Enable virtualization
   programs.dconf.enable = true; # needed for virt-manager GUI
+
+  # Enable thunar file manager
+  programs.thunar.enable = true;
+  programs.xfconf.enable = true;
   
   virtualisation = {
 
@@ -98,7 +138,10 @@
         };
       };
 
-    docker.enable = true;
+    docker = {
+	enable = true;
+    };
+
     spiceUSBRedirection.enable = true;
   };
 
@@ -108,17 +151,14 @@
   users.users.critch = {
     isNormalUser = true;
     description = "critch";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu-libvirtd" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu-libvirtd" "docker" "keyd" ];
     packages = with pkgs; [
-    thunderbird
     kitty
-    python3
-    notion
     spotify
     ];
   };
 
-  # Install firefox.
+  # Install browser
   programs.firefox.enable = true;
 
   # Allow unfree packages
@@ -133,12 +173,36 @@
   curl
   tmux
   cmake
-  neofetch
+  fastfetch
   lua
   luajitPackages.luarocks-nix
   nodejs
   openssl
   pkg-config
+  notion-app-enhanced
+  htop
+  steam
+  gnumake
+  gcc
+  zathura
+  brightnessctl
+  zathura
+  wireshark-cli
+  ghidra
+  nmap
+  hashcat
+  bind
+  font-awesome
+  pavucontrol
+  bluez
+  # hyprland stuff
+  pywal
+  pywalfox-native
+  hyprpaper
+  waybar
+  wofi
+  mako
+  nwg-look
   # LSP's
   pyright
   lua-language-server
@@ -168,7 +232,10 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall = {
+	enable = true;
+	allowedTCPPorts = [ 5678 ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -176,6 +243,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
