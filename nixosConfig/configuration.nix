@@ -148,10 +148,11 @@ security.pam.yubico = {
   services.spice-vdagentd.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.critch = {
+  users.mutableUsers = true;
+  users.users.chirales = {
     isNormalUser = true;
-    description = "critch";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu-libvirtd" "docker" "keyd" ];
+    description = "chirales";
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
     kitty
     spotify

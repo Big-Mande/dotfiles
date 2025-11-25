@@ -1,6 +1,7 @@
--- After setting up mason-lspconfig you may set up servers via lspconfig
-require("lspconfig").pyright.setup {}
-require("lspconfig").lua_ls.setup {
+-- set lsp settings --
+
+-- set lua_ls to recognize vim lang options --
+vim.lsp.config['lua_ls'] = {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -10,25 +11,23 @@ require("lspconfig").lua_ls.setup {
 				checkThirdParty = false,
 				library = {
 					vim.env.VIMRUNTIME,
-					-- Depending on the usage, you might want to add additional paths here.
-					-- E.g.: For using `vim.*` functions, add vim.env.VIMRUNTIME/lua.
 					vim.env.VIMRUNTIME .. "/lua"
 				}
 		}
+	  }
 	}
-  }
-}
-require("lspconfig").bashls.setup {}
-require("lspconfig").cmake.setup {}
-require("lspconfig").html.setup {}
-require("lspconfig").nil_ls.setup {}
-require("lspconfig").ts_ls.setup {}
--- ...
--- settings
+};
 
-vim.cmd([[
-colorscheme tokyonight-storm
-]])
+-- enable lsps --
+vim.lsp.enable('lua_ls');
+vim.lsp.enable('pyright');
+vim.lsp.enable('bashls');
+vim.lsp.enable('cmake');
+vim.lsp.enable('nil_ls');
+vim.lsp.enable('ts_ls');
+
+-- editor config --
+vim.cmd([[colorscheme tokyonight-storm]])
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.tabstop = 4

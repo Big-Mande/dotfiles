@@ -56,6 +56,11 @@ require("lazy").setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
 
+	-- auto pair --
+	{
+		'jiangmiao/auto-pairs'
+	},
+
 	-- nvim surround
 	{
     "kylechui/nvim-surround",
